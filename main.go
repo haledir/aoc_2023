@@ -8,4 +8,5 @@ import (
 func main() {
 	fmt.Println("Start AOC")
 	day01.Part1()
+	day01.Part2()
 }
