@@ -7,62 +7,17 @@ import (
 	"strings"
 )
 
-type point struct {
-	x int
-	y int
-}
-
-func newPoint(p_x, p_y int) point {
-	return point{
-		x: p_x,
-		y: p_y,
-	}
-}
-
-type partNumber struct {
-	start  point
-	end    point
-	digits []string
-	value  int
-}
-
-func (pN *partNumber) newPoint(p_point point, start bool) {
-	if start == true {
-		pN.start = p_point
-	} else {
-		pN.end = p_point
-	}
-}
-
-func (pN *partNumber) clear() {
-	pN.digits = nil
-	pN.value = 0
-	pN.start = newPoint(-1, -1)
-	pN.end = newPoint(-1, -1)
-}
-
-func (pN *partNumber) calcValue() {
-	value := ""
-	for _, v := range pN.digits {
-
-		value = value + "" + fmt.Sprintf(v)
-	}
-	v, err := strconv.Atoi(value)
-	check(err)
-	pN.value = v
-}
-
-func Part1() {
-	fmt.Println("Start Day3 Part1")
+func Part2() {
+	fmt.Println("Start Day3 Part2")
 	input, err := os.ReadFile("day03/part1.input")
 	string_input := string(input)
 	check(err)
 	// fmt.Println(string_input)
-	result := doTheMagic(string_input)
+	result := doTheMagic2(string_input)
 	fmt.Printf("Day3 Part1: %v\n", result)
 }
 
-func doTheMagic(input string) int {
+func doTheMagic2(input string) int {
 	lines := strings.Split(input, "\n")
 	enginePartNumbers := make([]partNumber, 0)
 	theEngine := make([][]string, (len(lines) - 1))
@@ -102,18 +57,24 @@ func doTheMagic(input string) int {
 		}
 	}
 	result := 0
+	adStars := make(map[point]int)
 	for _, part := range enginePartNumbers {
-		legit := checkLegit(part.start, part.end, theEngine)
+		legit, star := checkLegit2(part.start, part.end, theEngine)
 		if legit == true {
 			part.calcValue()
-			result += part.value
+			val, starExists := adStars[star]
+			if starExists == false {
+				adStars[star] = part.value
+				continue
+			}
+			result += part.value * val
 			// fmt.Printf("Adding: %v\n", part)
 		}
 	}
 	return result
 }
 
-func checkLegit(start point, end point, theEngine [][]string) bool {
+func checkLegit2(start point, end point, theEngine [][]string) (bool, point) {
 	for x := start.x - 1; x <= end.x+1; x++ {
 		if x < 0 || x >= len(theEngine[0]) {
 			continue
@@ -122,24 +83,17 @@ func checkLegit(start point, end point, theEngine [][]string) bool {
 			if y < 0 || y >= len(theEngine) {
 				continue
 			}
-			if checkForSymbol(theEngine[y][x]) == true {
-				return true
+			if checkForSymbol2(theEngine[y][x]) == true {
+				return true, newPoint(x, y)
 			}
 		}
 	}
-	return false
+	return false, newPoint(-1, -1)
 }
 
-func checkForSymbol(s string) bool {
-	_, err := strconv.Atoi(s)
-	if err == nil || s == "." {
+func checkForSymbol2(s string) bool {
+	if s != "*" {
 		return false
 	}
 	return true
-}
-
-func check(err error) {
-	if err != nil {
-		panic(err)
-	}
 }
