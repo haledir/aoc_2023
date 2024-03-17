@@ -4,7 +4,8 @@ import (
 	"fmt"
 	// "github.com/haledir/aoc_2023/day01"
 	// "github.com/haledir/aoc_2023/day02"
-	"github.com/haledir/aoc_2023/day03"
+	// "github.com/haledir/aoc_2023/day03"
+	"github.com/haledir/aoc_2023/day04"
 )
 
 type point struct {
@@ -23,6 +24,8 @@ func main() {
 	// day01.Part2()
 	// day02.Part1()
 	// day02.Part2()
-	day03.Part1()
-	day03.Part2()
+	// day03.Part1()
+	// day03.Part2()
+	day04.Part1()
+
 }
