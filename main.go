@@ -33,4 +33,5 @@ func main() {
 	// day05.Part1()
 
 	day06.Part1()
+	day06.Part2()
 }

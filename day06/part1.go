@@ -40,3 +40,27 @@ func Part1() {
 	}
 	fmt.Printf("Part 1: %v\n", result)
 }
+
+func Part2() {
+	fmt.Println("Start day6 part1")
+	input, err := os.ReadFile("day06/part1.input")
+	string_input := string(input)
+	check(err)
+	lines := strings.Split(string_input, "\n")
+	ms := strings.Replace(strings.TrimSpace(strings.Split(lines[0], ":")[1]), " ", "", -1)
+	distances := strings.Replace(strings.TrimSpace(strings.Split(lines[1], ":")[1]), " ", "", -1)
+	result := 0
+
+	t, err := strconv.Atoi(ms)
+	check(err)
+	dist, err := strconv.Atoi(distances)
+	check(err)
+
+	for j := 0; j <= t; j++ {
+		d := j * (t - j)
+		if dist < d {
+			result++
+		}
+	}
+	fmt.Printf("Part 2: %v\n", result)
+}
