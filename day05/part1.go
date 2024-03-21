@@ -104,7 +104,7 @@ func Part1() {
 
 func checkMap(alMap []almanacMap, value int) int {
 	for i := range alMap {
-		if value > alMap[i].startNumber && value <= alMap[i].startNumber+alMap[i].numberRange {
+		if value >= alMap[i].startNumber && value <= alMap[i].startNumber+alMap[i].numberRange {
 			return value - alMap[i].startNumber + alMap[i].begin
 		}
 	}

@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	// "github.com/haledir/aoc_2023/day01"
-	// "github.com/haledir/aoc_2023/day02"
-	// "github.com/haledir/aoc_2023/day03"
-	//"github.com/haledir/aoc_2023/day04"
-	// "github.com/haledir/aoc_2023/day05"
-	"github.com/haledir/aoc_2023/day06"
+	_ "github.com/haledir/aoc_2023/day01"
+	_ "github.com/haledir/aoc_2023/day02"
+	_ "github.com/haledir/aoc_2023/day03"
+	_ "github.com/haledir/aoc_2023/day04"
+	"github.com/haledir/aoc_2023/day05"
+	_ "github.com/haledir/aoc_2023/day06"
 )
 
 type point struct {
@@ -31,7 +31,8 @@ func main() {
 	// day04.Part1()
 	// day04.Part2()
 	// day05.Part1()
+	day05.Part2()
 
-	day06.Part1()
-	day06.Part2()
+	// day06.Part1()
+	// day06.Part2()
 }
