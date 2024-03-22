@@ -1,2 +1,3 @@
-# aoc_2023
-My Advent of Code 2023
+# Advent of Code 2023
+
+My AoC Journey with Go.
